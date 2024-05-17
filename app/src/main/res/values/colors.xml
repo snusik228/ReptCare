@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="bar">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="easy_butt">#a5ff87</color>
+    <color name="med_butt">#ffce52</color>
+    <color name="hard_butt">#fa9191</color>
+    <color name="text_1">#abffe0</color>
+    <color name="set_name_color">#6f87fc</color>
+    <color name="start_game_color">#b3fc6f</color>
+
+    <color name="play_col">#ffe500</color>
+    <color name="lamp_col">#ff707a</color>
+    <color name="humidity_col">#96c7ff</color>
+    <color name="eat_col">#8a6a46</color>
+    <color name="drink_col">#9effff</color>
+    <color name="hello_text">#d6fff5</color>
+    <color name="skip_button">#878787</color>
+</resources>

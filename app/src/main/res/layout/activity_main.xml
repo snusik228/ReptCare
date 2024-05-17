@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".DifficultyChoose">
+
+
+    <Button
+        android:id="@+id/hard"
+        android:layout_width="345dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/hard_butt"
+        android:text="Высокий"
+        android:textColor="@color/black"
+
+
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/start_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medium"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/medium"
+        android:layout_width="342dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/med_butt"
+        android:text="Средний"
+        android:textColor="@color/black"
+
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/easy" />
+
+    <Button
+        android:id="@+id/easy"
+        android:layout_width="341dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/easy_butt"
+        android:text="Легкий"
+        android:textColor="@color/black"
+
+
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/difficulty_choose" />
+
+    <TextView
+        android:id="@+id/difficulty_choose"
+        android:layout_width="309dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="44dp"
+        android:gravity="center"
+        android:text="@string/choose_difficulty_level"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/easy_level_description"
+        android:layout_width="338dp"
+        android:layout_height="179dp"
+
+        android:layout_marginBottom="52dp"
+        android:gravity="center"
+        android:text="@string/easy_desc"
+        android:textColor="@color/black"
+
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="44dp"
+        android:gravity="center"
+        android:text="@string/start_button_text"
+        android:textColor="@color/black"
+
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/easy_level_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
