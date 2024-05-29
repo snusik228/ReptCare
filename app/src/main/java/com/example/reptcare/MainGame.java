@@ -35,6 +35,7 @@ public class MainGame extends AppCompatActivity {
     private String death_reason;
     Intent intent;
     Intent intent_2;
+    Intent intent_3;
     String this_difficulty;
     String reptile_name;
     Toast toast;
@@ -52,6 +53,8 @@ public class MainGame extends AppCompatActivity {
     TextView temp_stats;
     TextView hum_stats;
     TextView coin_counter;
+    Runnable runnable;
+    public Handler handler;
 
     public Reptile my_reptile = new Reptile();
     final int happy_delta = 50;
@@ -85,19 +88,7 @@ public class MainGame extends AppCompatActivity {
         }
         my_reptile.setName(reptile_name);
         my_reptile.setDifficulty(this_difficulty);
-
-//        if (savedInstanceState != null) {
-//            my_reptile.coins = savedInstanceState.getInt("coins");
-//            my_reptile.setHappy_level(savedInstanceState.getInt("happy"));
-//            my_reptile.setSatiety_level(savedInstanceState.getInt("happy"));
-//            my_reptile.setThirst_level(savedInstanceState.getInt("thirst"));
-//            my_reptile.setTemperature_level(savedInstanceState.getInt("temperature"));
-//            my_reptile.setMoisture_level(savedInstanceState.getInt("moisture"));
-//        }
-
         runTimer();
-
-
     }
 
     @Override
@@ -238,7 +229,7 @@ public class MainGame extends AppCompatActivity {
 
         setTextStats();
 
-        final Handler handler = new Handler();
+        handler = new Handler();
         handler.post(new Runnable() {
             @Override
             public void run()
@@ -397,7 +388,6 @@ public class MainGame extends AppCompatActivity {
 
                 mseconds+=100;
                 handler.postDelayed(this, 100);
-
             }
         });
     }
@@ -407,14 +397,6 @@ public class MainGame extends AppCompatActivity {
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
     public void setTextStats() {
-//        timeView.setText(Long.toString(mseconds/1000) + "\n Name = "
-//                + my_reptile.getName() + "\n Diff = "
-//                + my_reptile.getDifficulty() + "\n happy = "
-//                + my_reptile.getHappy_level() + "\n eat = "
-//                + my_reptile.getSatiety_level() + "\n drink = "
-//                + my_reptile.getThirst_level() + "\n temp = "
-//                + my_reptile.getTemperature_level() + "\n hum = "
-//                + my_reptile.getMoisture_level());
         coin_counter.setText(Integer.toString(my_reptile.coins));
         happy_stats.setText(Integer.toString(my_reptile.getHappy_level() / 10) + "%");
         eat_stats.setText(Integer.toString(my_reptile.getSatiety_level()/ 10) + "%");
@@ -428,6 +410,7 @@ public class MainGame extends AppCompatActivity {
     private void eatStore(){
         intent = new Intent(MainGame.this, EatStore.class);
         startActivity(intent);
+
     }
     private void drinkStore(){
         intent_2 = new Intent(MainGame.this, DrinkStore.class);
@@ -455,8 +438,6 @@ public class MainGame extends AppCompatActivity {
     public void doNotification(int notify_id, String title, String text){
         Intent k = new Intent(this, MainGame.class);
         k.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, k,
-//                                      PendingIntent.FLAG_UPDATE_CURRENT| PendingIntent.FLAG_IMMUTABLE );
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                         .setAutoCancel(true)
@@ -478,39 +459,35 @@ public class MainGame extends AppCompatActivity {
         }
     }
     private void cheakDeath() {
-        if (my_reptile.getHappy_level() == 0){
-            death_reason = "sad";
-            startDeathActivity();
-        }
-        else if (my_reptile.getThirst_level() == 0){
-            death_reason = "thirst";
-            startDeathActivity();
-        }
-        else if (my_reptile.getSatiety_level() == 0) {
-            death_reason = "satiety";
-            startDeathActivity();
-        }
-        else if (my_reptile.getTemperature_level() == 1000) {
-            death_reason = "hot";
-            startDeathActivity();
-        }
-        else if (my_reptile.getTemperature_level() == 0) {
-            death_reason = "cold";
-            startDeathActivity();
-        }
-        else if (my_reptile.getMoisture_level() == 0) {
-            death_reason = "drought";
-            startDeathActivity();
+        if (my_reptile.getHappy_level() == 0) {
+            death_reason = "грусти";
+            onStop();
+        } else if (my_reptile.getThirst_level() == 0) {
+            death_reason = "жажды";
+            onStop();
+        } else if (my_reptile.getSatiety_level() == 0) {
+            death_reason = "голода";
+            onStop();
+        } else if (my_reptile.getTemperature_level() == 1000) {
+            death_reason = "жары";
+            onStop();
+        } else if (my_reptile.getTemperature_level() == 0) {
+            death_reason = "холода";
+            onStop();
+        } else if (my_reptile.getMoisture_level() == 0) {
+            death_reason = "засухи";
+            onStop();
         }
     }
 
-    private void startDeathActivity() {
-        intent = new Intent(MainGame.this, DeathActivity.class);
-        intent.putExtra("death_reason", death_reason);
-        intent.putExtra("name", reptile_name);
-        intent.putExtra("life_time", mseconds/1000);
-        startActivity(intent);
-        finish();
+    protected void onStop() {
+        super.onStop();
+        intent_3 = new Intent(MainGame.this, DeathActivity.class);
+        intent_3.putExtra("death_reason", death_reason);
+        intent_3.putExtra("name", reptile_name);
+        intent_3.putExtra("life_time", mseconds / 1000);
+        startActivity(intent_3);
+
     }
 
 }
