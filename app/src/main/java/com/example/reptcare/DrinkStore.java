@@ -101,13 +101,13 @@ public class DrinkStore extends AppCompatActivity {
             }
         });
 
-        final Handler handler = new Handler();
-        handler.post(new Runnable() {
+        final Handler handler_1 = new Handler();
+        handler_1.post(new Runnable() {
             @Override
             public void run()
             {
                 setStats();
-                handler.postDelayed(this, 100);
+                handler_1.postDelayed(this, 100);
             }
         });
     }
